@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+    {% block content %}
+    {{ super() }}
+        <h2 class="text-center">Game Over!</h2>
+        <img src="{{ url_for('static', filename='gif/gameover.gif') }}" alt="">
+    {% endblock %}
+

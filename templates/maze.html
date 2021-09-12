@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+    {% block content %}
+        {{ super() }}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }} style_type_none">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <p><b>Количество попиток: {{ counter }}</b></p>
+        <form action="" method="post">
+            {{ form.csrf_token() }}
+
+            {% for field in form if field.name != "csrf_token" %}
+                {% if field.name != 'submit' %}
+                    <p>{{ field.label() }}</p>
+                {% endif %}
+
+                <p>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        {% if error == 'This field is required.' %}
+                            {{ 'Это поле обязательно к заполнению. Введите целое число больш нуля' }}
+                        {% elif error == 'Number must be at least 1.' %}
+                            {{ 'Число должно быть не менее 1.' }}
+                        {% else %}
+                            {{ error }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+
+            {% endfor %}
+        </form>
+        <img src="{{ url_for('static', filename=link_map) }}" alt="maze">
+        <!-- <img src="{{ url_for('static', filename='img/dungeon_plan.png') }}" alt="maze"> -->
+    {% endblock %}

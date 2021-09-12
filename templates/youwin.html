@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+    {% block content %}
+    {{ super() }}
+        <h2 class="text-center">You Win!</h2>
+        <img src="{{ url_for('static', filename='gif/youwin.gif') }}" alt="">
+    {% endblock %}
