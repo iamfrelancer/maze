@@ -1,0 +1,2 @@
+# maze
+project for stepik
