@@ -34,7 +34,6 @@ def maze(status):
         method = (player.up, player.right, player.down, player.left)[way]
         for _ in range(step):
             player.counter -= 1
-            print(player.counter)
             res = method(1)
             if res == '':
                 flash(f'Вы находетесь в "{player.room}"', 'alert alert-primary')
@@ -46,7 +45,6 @@ def maze(status):
                 else:
                     flash(res, 'alert alert-warning')
             if player.counter < 0:
-                print('asdfsadf4as65f6asd4f8swdf')
                 return redirect('/maze:gameover')
         link_map = f'img/{player.x}_{player.y}.png'
         return render_template('maze.html', form=form, link_map=link_map, counter=player.counter)
